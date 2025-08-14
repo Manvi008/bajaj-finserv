@@ -1,0 +1,43 @@
+<template>
+	<lightning-card title="Email Group Selector">
+		<div class="slds-p-around_medium slds-grid slds-wrap slds-gutters">
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+				<lightning-combobox
+					name="group"
+					label="Group"
+					value={selectedGroup}
+					placeholder="Select Group"
+					options={groupOptions}
+					onchange={handleGroupChange}>
+				</lightning-combobox>
+			</div>
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+				<lightning-combobox
+					name="email"
+					label="Email"
+					value={selectedEmail}
+					placeholder="Select Email"
+					options={emailOptions}
+					onchange={handleEmailChange}
+					disabled={isEmailDisabled}>
+				</lightning-combobox>
+			</div>
+			<div class="slds-col slds-size_1-of-1 slds-m-top_small">
+				<div class="slds-grid slds-gutters">
+					<div class="slds-col">
+						<lightning-input type="checkbox" label="Contact" checked={includeContact} onchange={handleToggleContact}></lightning-input>
+					</div>
+					<div class="slds-col">
+						<lightning-input type="checkbox" label="Account" checked={includeAccount} onchange={handleToggleAccount}></lightning-input>
+					</div>
+					<div class="slds-col">
+						<lightning-input type="checkbox" label="Prospect" checked={includeProspect} onchange={handleToggleProspect}></lightning-input>
+					</div>
+				</div>
+			</div>
+			<div class="slds-col slds-size_1-of-1 slds-m-top_medium">
+				<lightning-button variant="brand" label="Submit" onclick={handleSubmit} disabled={isSubmitDisabled}></lightning-button>
+			</div>
+		</div>
+	</lightning-card>
+</template>
