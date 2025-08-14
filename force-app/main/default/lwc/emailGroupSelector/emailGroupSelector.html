@@ -1,0 +1,71 @@
+<template>
+  <lightning-card title="Email Group Selection" icon-name="utility:email">
+    <div class="slds-p-around_medium">
+      <div class="slds-grid slds-wrap slds-gutters">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+          <lightning-combobox
+            name="group"
+            label="Email Group"
+            value={selectedGroup}
+            options={picklistOptions}
+            placeholder="Select an Email Group"
+            onchange={handleGroupChange}
+          ></lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+          <lightning-combobox
+            name="email"
+            label="Email Selection"
+            value={selectedEmail}
+            options={emailOptions}
+            placeholder={anyObjectSelected ? 'Select an Email' : 'Select object(s) and group first'}
+            onchange={handleEmailChange}
+            disabled={ !selectedGroup || !anyObjectSelected }
+          ></lightning-combobox>
+        </div>
+      </div>
+
+      <div class="slds-m-top_medium">
+        <lightning-layout horizontal-align="spread">
+          <lightning-layout-item>
+            <lightning-input
+              type="checkbox"
+              name="Contact"
+              label="Contact"
+              onchange={handleCheckboxChange}
+            ></lightning-input>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            <lightning-input
+              type="checkbox"
+              name="Account"
+              label="Account"
+              onchange={handleCheckboxChange}
+            ></lightning-input>
+          </lightning-layout-item>
+          <lightning-layout-item>
+            <lightning-input
+              type="checkbox"
+              name="Lead"
+              label="Prospect (Lead)"
+              onchange={handleCheckboxChange}
+            ></lightning-input>
+          </lightning-layout-item>
+        </lightning-layout>
+      </div>
+
+      <div class="slds-m-top_medium">
+        <lightning-button
+          variant="brand"
+          label="Submit"
+          onclick={handleSubmit}
+          disabled={isSubmitDisabled}
+        ></lightning-button>
+      </div>
+    </div>
+
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+    </template>
+  </lightning-card>
+</template>
